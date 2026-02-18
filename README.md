@@ -31,26 +31,46 @@ The goal was to combine backend engineering, AI intelligence, and practical care
 ## Folder Structure
 
 ROADMAPGENERATOR/
+
 │
+
 ├── manage.py
+
 ├── requirements.txt
+
 ├── runtime.txt
+
 ├── build.sh
+
 │
 ├── static/
+
 │   ├── styles/
+
 │   ├── scripts/
+
 │   └── images/
+
 │
+
 ├── templates/
+
 │   └── index.html
+
 │
+
 ├── roadmapgenerator/
+
 │   ├── __init__.py
+
 │   ├── settings.py
+
 │   ├── urls.py
+
 │   ├── views.py
+
 │   ├── wsgi.py
+
 │   └── asgi.py
 
 ## Conclusion
