@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoadmapGenerator</title>
+<link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+
+<body>
+
+<nav>
+RoadmapGenerator
+</nav>
+
+<div class="container">
+<h1>Create Your Career Roadmap</h1>
+<p>Get a personalized roadmap to achieve your career goals.</p>
+
+<div class="form-box">
+<div class="form-row">
+<input type="text" id="role" placeholder="Enter Role (e.g. Frontend Developer)">
+</div>
+
+<div class="form-row">
+<input type="text" id="education" placeholder="Current Education (e.g. B.Tech CSE)">
+<input type="text" id="duration" placeholder="Duration (e.g. 6 Months)">
+</div>
+
+<button onclick="generateRoadmap()">Generate Roadmap</button>
+</div>
+
+<div class="timeline" id="timeline"></div>
+
+</div>
+
+<section class="how-section">
+<h2>How It Works</h2>
+<div class="steps">
+<div class="step">
+<h3>1. Enter Details</h3>
+<p>Provide role, education, timeline.</p>
+</div>
+<div class="step">
+<h3>2. AI Generates Plan</h3>
+<p>Structured roadmap.</p>
+</div>
+<div class="step">
+<h3>3. Follow & Succeed</h3>
+<p>Track and achieve your goal.</p>
+</div>
+</div>
+</section>
+
+<footer>
+© 2026 RoadmapGenerator. All rights reserved.
+</footer>
+
+<script src="{% static 'scripts/index.js' %}"></script>
+
+</body>
+</html>
