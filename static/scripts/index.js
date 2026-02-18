@@ -1,3 +1,5 @@
+var globalRoadmapData = null;
+
 function generateRoadmap(){
 
 var role = document.getElementById("role").value.trim();
@@ -166,6 +168,11 @@ timeline.appendChild(marketItem);
 
 }
 
+
+globalRoadmapData = roadmap;
+document.getElementById("downloadBtn").style.display = "inline-block";
+
+  
 })
 .catch(function(error){
 timeline.innerHTML = "<div class='loading'>Something went wrong.</div>";
@@ -173,3 +180,96 @@ console.error("Error:", error);
 });
 
 }
+
+
+
+
+
+
+
+
+
+
+
+function downloadRoadmap(){
+
+if(!globalRoadmapData){
+alert("Generate roadmap first.");
+return;
+}
+
+const { jsPDF } = window.jspdf;
+var doc = new jsPDF();
+
+var y = 10;
+
+doc.setFontSize(16);
+doc.text("AI Career Roadmap", 10, y);
+y += 10;
+
+if(globalRoadmapData.phases){
+
+globalRoadmapData.phases.forEach(function(phase){
+
+doc.setFontSize(14);
+doc.text(phase.phase_name + " (" + phase.days_count + " Days)", 10, y);
+y += 8;
+
+doc.setFontSize(11);
+
+if(phase.learning_points){
+phase.learning_points.forEach(function(point){
+var splitText = doc.splitTextToSize("- " + point, 180);
+doc.text(splitText, 12, y);
+y += splitText.length * 6;
+});
+}
+
+y += 4;
+
+if(phase.projects){
+doc.text("Projects:", 12, y);
+y += 6;
+
+phase.projects.forEach(function(project){
+var splitText = doc.splitTextToSize(
+project.title + ": " + project.description, 170
+);
+doc.text(splitText, 14, y);
+y += splitText.length * 6;
+});
+}
+
+y += 4;
+
+if(phase.resources){
+doc.text("Resources:", 12, y);
+y += 6;
+
+phase.resources.forEach(function(resource){
+var splitText = doc.splitTextToSize(
+resource.title + " - " + resource.link, 170
+);
+doc.text(splitText, 14, y);
+y += splitText.length * 6;
+});
+}
+
+y += 10;
+
+if(y > 270){
+doc.addPage();
+y = 10;
+}
+
+});
+
+}
+
+doc.save("AI_Roadmap.pdf");
+
+}
+
+
+
+
